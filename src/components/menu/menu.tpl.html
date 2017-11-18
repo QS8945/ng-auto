@@ -1,0 +1,24 @@
+<ul class="menu">
+    <li class="menu-item"
+        ng-repeat="item in vm.data">
+
+        <!-- 目录节点 -->
+        <a ng-if="item.childMenus.length > 0"
+           class="menu-link"
+           ng-class="{opened: item.opened}"
+           ng-click="vm.toggleOpen(item)">
+            {{item.name}}
+            <i class="iconfont icon-nextpage"></i>
+        </a>
+        <!-- 叶子节点 -->
+        <a ng-if="item.isLeaf==='0'"
+           class="menu-link"
+           ng-class="{active: $state.includes(item.url)}"
+        >{{item.name}}</a>
+
+        <!-- 子目录 -->
+        <menu ng-if="item.childMenus.length > 0"
+                  data="item.childMenus">
+        </menu>
+    </li>
+</ul>
